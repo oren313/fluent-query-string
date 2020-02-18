@@ -1,0 +1,33 @@
+{
+  "name": "fluent-query-string",
+  "version": "1.0.0",
+  "description": "Fluent Query String Builder",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.3",
+    "mocha": "^2.4.5"
+  },
+  "scripts": {
+    "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oren313/fluent-query-string.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "keywords": [
+    "Query String",
+    "Query",
+    "Fluent Interface",
+    "Query String Builder"
+  ],
+  "author": "Oren313",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 0.10.0"
+  }
+}
