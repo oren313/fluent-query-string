@@ -1,23 +1,28 @@
 'use strict';
 
-function QueryString(methods) {
+function QueryString(operations) {
   this._queryString = {};
 
   var self = this;
 
-  for (var m in methods) {
-    (function (name, method) {     
+  for (var m in operations) {
+    (function (name, op) {     
       self[name] = function(val) {
-        if (method.func) {
-          self._queryString[name] = method.func(val);
+        if (val === null) {
+          self._queryString[name] = op.defualt;
         }
         else {
-          self._queryString[name] = val;
-        }
+          if (op.func) {
+            self._queryString[name] = op.func(val);
+          }
+          else {
+            self._queryString[name] = val;
+          }
 
-        return self;  // Fluent
-      };
-    })(m, methods[m]);  // iife
+          return self;  // Fluent
+        };
+      }
+    })(m, operations[m]);
   } 
 }
 
@@ -32,7 +37,7 @@ QueryString.prototype.valueOf = function() {
 };
 
 QueryString.prototype.toString = function() {
-  return require('querystring').stringify(this.valueOf());
+  return require('query-string').stringify(this.valueOf());
 }
 
 module.exports = QueryString;

@@ -1,22 +1,24 @@
-const {Query} = require('./index');
+const {QueryString} = require('./index');
 
-var twitter_qs = {
+var query_config = {
   "count": {
-    "method": "set",
-    "defualt": 0
+    "op": "set",
+    "default": 0
   },
   "setContext": {
-    "method": "set",
+    "op": "set",
     "func": (val) => {let arr = ["north","south"]; return arr[val]; }
+  },
+  "language": {
+    "op": "set",
   }
 };
 
-var twitterQuery = new Query(twitter_qs);
+var myQuery = new QueryString(query_config);
 
 // Use the builder
-var qs = twitterQuery
-      .q("#happy")
+var queryString = myQuery
+      .setContext(1)
       .language("en")
-      .result_type("popular")
       .count(100)
       .toString();

@@ -3,14 +3,18 @@
   "version": "1.0.0",
   "description": "Fluent Query String Builder",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "query-string": "^6.11.0"
+  },
   "devDependencies": {
     "chai": "^3.5.0",
     "istanbul": "^0.4.3",
     "mocha": "^2.4.5"
   },
   "scripts": {
-    "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha"
+    "build": "npm run build:js",
+    "test": "mocha",
+    "tests": "./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha"
   },
   "repository": {
     "type": "git",
@@ -21,6 +25,7 @@
   },
   "keywords": [
     "Query String",
+    "Fluent Query String",
     "Query",
     "Fluent Interface",
     "Query String Builder"
