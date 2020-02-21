@@ -5,24 +5,34 @@ function QueryString(operations) {
 
   var self = this;
 
-  for (var m in operations) {
+  for (var o in operations) {
     (function (name, op) {     
       self[name] = function(val) {
-        if (val === null) {
-          self._queryString[name] = op.defualt;
+        var newValue = val;
+
+        if (val == 'undefined' || val == null) {
+          newValue = op.default;
         }
-        else {
-          if (op.func) {
-            self._queryString[name] = op.func(val);
+
+        if (op.func) {
+          newValue = op.func(newValue);
+        }
+
+        if (op.op === 'add') {
+          if (!self._queryString[name]) {
+            self._queryString[name] = [newValue];
           }
           else {
-            self._queryString[name] = val;
+            self._queryString[name].push(newValue);
           }
+        }
+        else {
+          self._queryString[name] = newValue;
+        }
 
-          return self;  // Fluent
-        };
-      }
-    })(m, operations[m]);
+        return self;  // Fluent
+      };
+    })(o, operations[o]);
   } 
 }
 
