@@ -1,8 +1,40 @@
-var assert = require('assert');
 var expect = require('chai').expect;
 var {QueryString} = require('../index');
 
 describe("Sanity tests", function() {
+
+  describe("full sanity like Readme.md", function() {
+    it("should work with all features properly like the readme example", function(done){
+      // Arrange
+      var queryBuilder = {
+        "partOfTheWorld": {
+            "op": "set",
+            "func": (val) => {let arr = ["north","south","east","west"]; return arr[val]; }
+        },
+        "language": {
+          "op": "add",
+          "default": "en",
+        },
+        "count": {
+          "op": "set"
+        }
+      };
+
+      var query = new QueryString(queryBuilder);
+    
+      // Act
+      var queryBuilder = query
+        .language("ru")
+        .language()
+        .partOfTheWorld(2)
+        .count(10);
+
+      // Assert
+      expect(query.valueOf()).to.deep.equal({language:["ru","en"], partOfTheWorld:"east",count:10});
+      expect(query.toString()).to.equal("count=10&language=ru&language=en&partOfTheWorld=east");
+      done();
+    });
+  });
 
   describe("operations", function() {
 

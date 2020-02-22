@@ -34,5 +34,12 @@
   "license": "MIT",
   "engines": {
     "node": ">= 0.10.0"
+  },
+  "bugs": {
+    "url": "https://github.com/oren313/fluent-query-string/issues"
+  },
+  "homepage": "https://github.com/oren313/fluent-query-string",
+  "directories": {
+    "test": "test"
   }
 }

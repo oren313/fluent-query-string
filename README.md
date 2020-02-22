@@ -17,7 +17,7 @@ var query_config = {
       "func": (val) => {let arr = ["north","south","east","west"]; return arr[val]; }
   },
   "language": {
-    "op": "set",
+    "op": "add",
     "default": "en",
   },
   "count": {
@@ -30,8 +30,9 @@ var query = new fluentQueryString(query_config);
 // Use the builder
 var queryString = query
       .language("ru")
+      .language()
       .partOfTheWorld(2)
       .count(10)
       .toString();
 
-// result: query == "language=en&partOfTheWorld=east&count=10"
+// result: query == "count=10&language=ru&language=en&partOfTheWorld=east"
