@@ -1,6 +1,6 @@
 {
   "name": "fluent-query-string",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Fluent Query String Builder",
   "main": "index.js",
   "dependencies": {
