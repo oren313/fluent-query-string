@@ -36,9 +36,9 @@
   #### Output
   ```json
     {
-      result : {
-        firstname: ["Joe","Mark"],
-        lastname: "Johnson"
+      "result" : {
+        "firstname": ["Joe","Mark"],
+        "lastname": "Johnson"
       }
     }
   ```
@@ -63,8 +63,8 @@
   #### Output
   ```json
     {
-      result : {
-        count: 100
+      "result" : {
+        "count": 100
       }
     }
   ```
@@ -89,8 +89,8 @@
   #### Output
   ```json
     {
-      result : {
-        maxSize: 10
+      "result" : {
+        "maxSize": 10
       }
     }
   ```
@@ -123,15 +123,15 @@ Allows to set the property with any callback.
   #### Output
   ```json
     {
-      result1 : {
-        maxSize: 1000
+      "result1" : {
+        "maxSize": 1000
       }
     }
   ```
   ```json
     {
-      result2 : {
-        maxSize: 1
+      "result2" : {
+        "maxSize": 1
       }
     }
   ```
