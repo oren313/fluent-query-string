@@ -1,38 +1,41 @@
 'use strict';
 
-function QueryString(operations) {
+const _setDefault = (val, newValue) => {
+  return (val == 'undefined' || val == null) ? newValue : val;
+}
+
+function QueryString(properties) {
   this._queryString = {};
 
   var self = this;
 
-  for (var o in operations) {
-    (function (name, op) {     
+  for (var p in properties) {
+    (function (name, prop) {     
       self[name] = function(val) {
         var newValue = val;
+        var propName = prop.name || name;
 
-        if (val == 'undefined' || val == null) {
-          newValue = op.default;
+        newValue = _setDefault(val, prop.default);
+      
+        if (prop.func) {
+          newValue = prop.func(newValue);
         }
 
-        if (op.func) {
-          newValue = op.func(newValue);
-        }
-
-        if (op.op === 'add') {
-          if (!self._queryString[name]) {
-            self._queryString[name] = [newValue];
+        if (prop.op === 'add') {
+          if (!self._queryString[propName]) {
+            self._queryString[propName] = [newValue];
           }
           else {
-            self._queryString[name].push(newValue);
+            self._queryString[propName].push(newValue);
           }
         }
         else {
-          self._queryString[name] = newValue;
+          self._queryString[propName] = newValue;
         }
 
         return self;  // Fluent
       };
-    })(o, operations[o]);
+    })(p, properties[p]);
   } 
 }
 

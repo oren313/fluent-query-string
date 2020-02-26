@@ -199,4 +199,27 @@ describe("Sanity tests", function() {
       done();
     });
   });
+
+  describe("name", function() {
+    it("should set the property of the model by its name", function(done) {
+        // Arrange
+        var queryBuilder = {
+          "withCount": {
+            "name": "count",
+            "op": "set"
+          }
+        };
+  
+        var query = new QueryString(queryBuilder);
+      
+        // Act
+        var queryBuilder = query
+          .withCount(100);
+  
+        // Assert
+        expect(query.valueOf()).to.deep.equal({count:100});
+        expect(query.toString()).to.equal("count=100");
+        done();
+    });
+  });
 });
